@@ -3,8 +3,7 @@
 #include <string>
 
 struct Person {
-  Person(const std::string& name, int age) : m_name{name}, m_age{age}{
-  }
+  Person(const std::string& name, int age) : m_name{name}, m_age{age}{}
   Person(const Person& lhs) : m_name{lhs.m_name}, m_age{lhs.m_age} {}
   Person(Person&& p) : m_name {std::move(p.m_name)}, m_age{std::move(p.m_age)} {
     m_name = nullptr;
@@ -32,6 +31,7 @@ void print_elem() {
   }
   std::cout << std::endl;
 }
+
 template<typename... Ts>
 void print_elem_variadic() {
   (print_elem<Ts>(), ...);
@@ -47,7 +47,6 @@ void create_Array(T t, Ts... ts) {
 }
 
 int main() {
-
   create_Array('p',1, 2.5, 'c', "string", Person{"Sally", 18});
   print_elem_variadic<int, double, char, const char*, Person>();
 
